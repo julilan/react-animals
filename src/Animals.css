@@ -1,0 +1,12 @@
+.animals_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+}
+
+h2 {
+  text-align: center;
+  margin: 1rem;
+  color: white;
+}
