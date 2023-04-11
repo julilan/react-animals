@@ -6,7 +6,7 @@ import './Animals.css';
 const Birds = (props) => {
 
   const searchFilter = props.data.filter(item => {
-    return item.name.includes(props.searchInput)
+    return item.name.toLowerCase().includes(props.searchInput)
   })
 
   return (
@@ -18,9 +18,9 @@ const Birds = (props) => {
         key={item.name} 
         name={item.name} 
         likes={item.likes} 
-        removeCard={() => props.removeHandler(item.name)} // binding the data to send it up to the parent
-        addLikes={() => props.likesHandler(item.name, 'add')} 
-        removeLikes={() => props.likesHandler(item.name, 'remove')}/>)}
+        removeCard={() => props.removeHandler(item.name, 'birds')} // binding the data to send it up to the parent
+        addLikes={() => props.likesHandler(item.name, 'add', 'birds')} 
+        removeLikes={() => props.likesHandler(item.name, 'remove', 'birds')}/>)}
       </div>
     </div>
   );

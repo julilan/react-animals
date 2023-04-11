@@ -1,5 +1,9 @@
 h1 {
   text-align: center;
   color:white;
-  margin-top: 1rem;
+}
+
+.header {
+  min-height: 5vh;
+  padding-top: 1rem;
 }

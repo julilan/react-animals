@@ -11,13 +11,13 @@ const Home = () => {
       <div className='landing_page'>
         <figure>
           <NavLink to="/animals">
-          <h2>Animals</h2>
+          <figcaption>Animals</figcaption>
           <img src="https://images.unsplash.com/photo-1622227056993-6e7f88420855?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2787&q=80" alt="hedgehog" />
           </NavLink>
         </figure>
         <figure>
           <NavLink to="/birds">
-          <h2>Birds</h2>
+          <figcaption>Birds</figcaption>
           <img src="https://images.unsplash.com/photo-1605296448627-acb9a215ffb6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2787&q=80" alt="owl" />
           </NavLink>
         </figure>
@@ -42,34 +42,57 @@ class App extends Component {
     searchInput: ''
   };
 
-  likesHandler = (name, action) => {
-
-    this.setState((prevState) => { // setState(state) method taking previous state
-      const updatedArray = prevState.animals.map((animal) => {
-        if (animal.name === name) {
-          if (action === 'add') {
-            return {...animal, likes: animal.likes + 1}
+  likesHandler = (name, action, source) => {
+    if (source === 'animals') {
+      this.setState((prevState) => { // setState(state) method taking previous state
+        const updatedAnimalArray = prevState.animals.map((animal) => {
+          if (animal.name === name) {
+            if (action === 'add') {
+              return {...animal, likes: animal.likes + 1}
+            } else {
+              return {...animal, likes: animal.likes - 1}
+            }
           } else {
-            return {...animal, likes: animal.likes - 1}
+            return animal;
           }
-        } else {
-          return animal;
+        })
+        return {
+          animals: updatedAnimalArray
         }
-    })
-    return {
-      animals: updatedArray
+      })
+    } else {
+      this.setState((prevState) => { // setState(state) method taking previous state
+        const updatedBirdArray = prevState.birds.map((animal) => {
+          if (animal.name === name) {
+            if (action === 'add') {
+              return {...animal, likes: animal.likes + 1}
+            } else {
+              return {...animal, likes: animal.likes - 1}
+            }
+          } else {
+            return animal;
+          }
+        })
+        return {
+          birds: updatedBirdArray
+        }
+      })
     }
-  })
-}
+  }
 
-  removeHandler = (name) => {
-    const updatedArray = this.state.animals.filter(animal => animal.name !== name)
-    this.setState({animals: updatedArray});
+  removeHandler = (name, source) => {
+    if (source === 'animals') {
+      const updatedAnimalArray = this.state.animals.filter(animal => animal.name !== name)
+      this.setState({animals: updatedAnimalArray});
+    } else {
+      const updatedBirdArray = this.state.birds.filter(animal => animal.name !== name)
+      this.setState({birds: updatedBirdArray});
+    }
   }
 
   searchHandler = (e) => {
     this.setState({
-      searchInput: e.target.value // storing the input to the state
+      searchInput: e.target.value.toLowerCase() // storing the input to the state
     })
   }
 
@@ -80,38 +103,37 @@ class App extends Component {
         <div>
           <Header title={this.state.title}/>
           <nav>
-          <ul>
-            <li>
-              <NavLink to="/">Home</NavLink>
-            </li>
-            <li>
-              <NavLink to="/animals">Animals</NavLink>
-            </li>
-            <li>
-              <NavLink to="/birds">Birds</NavLink>
-            </li>
-            <li>
-              <NavLink to="/about">About</NavLink>
-            </li>
-          </ul>
-        </nav>
-
+            <ul>
+              <li>
+                <NavLink to="/">Home</NavLink>
+              </li>
+              <li>
+                <NavLink to="/animals">Animals</NavLink>
+              </li>
+              <li>
+                <NavLink to="/birds">Birds</NavLink>
+              </li>
+              <li>
+                <NavLink to="/about">About</NavLink>
+              </li>
+            </ul>
+          </nav>
           <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/animals" element={<Animals 
               data = {this.state.animals} 
               likesHandler = {this.likesHandler}
-              removeHandler={this.removeHandler}
-              searchHandler={this.searchHandler}
-              searchInput={this.state.searchInput}
+              removeHandler = {this.removeHandler}
+              searchHandler = {this.searchHandler}
+              searchInput = {this.state.searchInput}
               />}
             />
             <Route path="/birds" element={<Birds
               data = {this.state.birds}
               likesHandler = {this.likesHandler}
-              removeHandler={this.removeHandler}
-              searchHandler={this.searchHandler}
-              searchInput={this.state.searchInput}
+              removeHandler = {this.removeHandler}
+              searchHandler = {this.searchHandler}
+              searchInput = {this.state.searchInput}
               />}
             />
             <Route path="/about" element={<About/>}/>
