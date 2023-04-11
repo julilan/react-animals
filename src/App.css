@@ -6,4 +6,37 @@
 
 body {
   background-color: #333;
+  color: teal;
+}
+
+nav ul li {
+  display: inline-block;
+  margin: 0.5rem;
+}
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.active {
+  color: turquoise;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing_page img {
+  width: 100vh;
+  height: 80vh;
+  object-fit: cover;
+}
+
+.landing_page {
+  display: flex;
+  flex-wrap: row wrap;
+  justify-content: center;
+  align-items: center;
 }

@@ -7,11 +7,11 @@ const Card = (props) => {
       <img src={`https://source.unsplash.com/500x400/?${props.name}`} alt={`${props.name}`} />
       <h3>{props.name}</h3>
       <div className='likes_container'>
-        <button value={props.name} name='addlike' onClick={props.addLikes}>+</button>
+        <button onClick={props.addLikes}>+</button>
         {props.likes >= 0 ? <p>❤️ {props.likes}</p> : <p>💔 {props.likes}</p>}
-        <button value={props.name} name='removelike' onClick={props.removeLikes}>-</button>
+        <button onClick={props.removeLikes}>-</button>
       </div>
-      <button value={props.name} className='close' onClick={props.removeCard}>x</button>
+      <button className='close' onClick={props.removeCard}>x</button>
     </div>
   );
 };
