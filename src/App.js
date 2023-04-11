@@ -101,7 +101,9 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
+          <NavLink to="/">
           <Header title={this.state.title}/>
+          </NavLink>
           <nav>
             <ul>
               <li>
