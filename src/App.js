@@ -110,10 +110,10 @@ class App extends Component {
                 <NavLink to="/">Home</NavLink>
               </li>
               <li>
-                <NavLink to="/animals">Animals</NavLink>
+                <NavLink to="/animals">Animals ({this.state.animals.length})</NavLink>
               </li>
               <li>
-                <NavLink to="/birds">Birds</NavLink>
+                <NavLink to="/birds">Birds ({this.state.birds.length})</NavLink>
               </li>
               <li>
                 <NavLink to="/about">About</NavLink>
