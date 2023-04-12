@@ -11,7 +11,7 @@ const Animals = (props) => {
 
   return (
     <div className='wrapper'>
-      <h2>Animals: {props.data.length}</h2>
+      <h2>Animals remaining: {props.data.length}</h2>
       <Search searchHandler={props.searchHandler}/>
       <div className="animals_container">
         {searchFilter.map((item) => <Card 

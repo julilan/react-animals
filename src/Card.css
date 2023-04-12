@@ -17,21 +17,29 @@ h3 {
   margin:1rem;
 }
 
-img {
+.card img {
   width: 180px;
   height: auto;
+  filter: grayscale(0.7);
 }
 
 button {
   padding: 10px;
-  margin: 0 1rem;
   border: none;
-  background-color: lightblue;
+  background-color: inherit;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .likes_container {
+  width: 100%;
   display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.likes_container p {
+  width: 10%;
 }
 
 .close {
@@ -40,6 +48,6 @@ button {
   top: -10px;
   right: -10px;
   margin: 0;
-  background-color: lightgray;
+  background-color: inherit;
   border-radius: 50%;
 }
