@@ -1,4 +1,4 @@
-.animals_container {
+.list_container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,6 +9,10 @@ h2 {
   text-align: center;
   margin: 1rem;
   color: white;
+}
+
+h2::first-letter {
+  text-transform: capitalize;
 }
 
 .wrapper {

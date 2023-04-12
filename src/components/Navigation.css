@@ -9,12 +9,11 @@ nav {
 nav ul {
   width: 70%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
 }
 
 nav ul li {
-  width: 25%;
   display: inline-block;
   margin: 0.5rem;
 }

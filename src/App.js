@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Animals from './pages/Animals';
-import Birds from './pages/Birds';
+//import Animals from './pages/Animals';
+//import Birds from './pages/Birds';
+import List from './pages/List';
 import Header from './components/Header';
 import About from './pages/About';
 import Home from './pages/Home';
@@ -18,52 +19,29 @@ class App extends Component {
     searchInput: ''
   };
 
-  likesHandler = (name, action, source) => {
-    if (source === 'animals') {
+  likesHandler = (name, action, list) => {
+
       this.setState((prevState) => { // setState(state) method taking previous state
-        const updatedAnimalArray = prevState.animals.map((animal) => {
-          if (animal.name === name) {
+        const updatedArray = prevState[list].map((item) => {
+          if (item.name === name) {
             if (action === 'add') {
-              return {...animal, likes: animal.likes + 1}
+              return {...item, likes: item.likes + 1}
             } else {
-              return {...animal, likes: animal.likes - 1}
+              return {...item, likes: item.likes - 1}
             }
           } else {
-            return animal;
+            return item;
           }
         })
         return {
-          animals: updatedAnimalArray
+          [list]: updatedArray
         }
       })
-    } else {
-      this.setState((prevState) => { // setState(state) method taking previous state
-        const updatedBirdArray = prevState.birds.map((animal) => {
-          if (animal.name === name) {
-            if (action === 'add') {
-              return {...animal, likes: animal.likes + 1}
-            } else {
-              return {...animal, likes: animal.likes - 1}
-            }
-          } else {
-            return animal;
-          }
-        })
-        return {
-          birds: updatedBirdArray
-        }
-      })
-    }
   }
 
-  removeHandler = (name, source) => {
-    if (source === 'animals') {
-      const updatedAnimalArray = this.state.animals.filter(animal => animal.name !== name)
-      this.setState({animals: updatedAnimalArray});
-    } else {
-      const updatedBirdArray = this.state.birds.filter(animal => animal.name !== name)
-      this.setState({birds: updatedBirdArray});
-    }
+  removeHandler = (name, list) => {
+    const updatedArray = this.state[list].filter(item => item.name !== name);
+    this.setState({[list]: updatedArray});
   }
 
   searchHandler = (e) => {
@@ -84,7 +62,8 @@ class App extends Component {
             birdsLength = {this.state.birds.length}/>
           <Routes>
             <Route path="/" element={<Home/>}/>
-            <Route path="/animals" element={<Animals 
+            <Route path="/animals" element={<List 
+              title="animals"
               data = {this.state.animals} 
               likesHandler = {this.likesHandler}
               removeHandler = {this.removeHandler}
@@ -92,7 +71,8 @@ class App extends Component {
               searchInput = {this.state.searchInput}
               />}
             />
-            <Route path="/birds" element={<Birds
+            <Route path="/birds" element={<List
+              title="birds"
               data = {this.state.birds}
               likesHandler = {this.likesHandler}
               removeHandler = {this.removeHandler}
