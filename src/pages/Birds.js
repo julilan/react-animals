@@ -1,6 +1,6 @@
 import React from 'react';
-import Search from './Search';
-import Card from './Card';
+import Search from '../UI/Search';
+import Card from '../UI/Card';
 import './Animals.css';
 
 const Birds = (props) => {
